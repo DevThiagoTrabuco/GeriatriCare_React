@@ -1,5 +1,11 @@
-function AuthLayout() {
-    
-}
+import { Outlet } from "react-router";
 
-export default AuthLayout;
+export default function AuthLayout() {
+    return (
+        <div className="min-h-screen flex bg-gray-100">
+            <main>
+                <Outlet />
+            </main>
+        </div>
+    );
+}
