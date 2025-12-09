@@ -1,10 +1,10 @@
-import * as Residents from "../layouts/dashboard/ResidentsLayout";
-import * as Employees from "../layouts/dashboard/EmployeesLayout";
-import * as Finance from "../layouts/dashboard/FinanceLayout";
-import * as Storage from "../layouts/dashboard/StorageLayout";
-import * as Appointments from "../layouts/dashboard/AppointmentsLayout";
-import * as Charges from "../layouts/dashboard/ChargesLayout";
-import * as Debts from "../layouts/dashboard/DebtsLayout";
+import ResidentsLayout from "../layouts/dashboard/ResidentsLayout";
+import EmployeesLayout from "../layouts/dashboard/EmployeesLayout";
+import FinanceLayout from "../layouts/dashboard/FinanceLayout";
+import StorageLayout from "../layouts/dashboard/StorageLayout";
+import AppointmentsLayout from "../layouts/dashboard/AppointmentsLayout";
+import ChargesLayout from "../layouts/dashboard/ChargesLayout";
+import DebtsLayout from "../layouts/dashboard/DebtsLayout";
 
 import Overview from "../pages/dashboard/Overview";
 
@@ -26,7 +26,7 @@ export const routes = [
     { path: "/dashboard", element: <Overview /> },
     {
         path: "/residentes",
-        element: <Residents />,
+        element: <ResidentsLayout />,
         children: [
             { path: "", element: <ResidentsList /> },
             { path: "perfil", element: <Profile /> },
@@ -35,7 +35,7 @@ export const routes = [
     },
     {
         path: "/agendamentos",
-        element: <Appointments />,
+        element: <AppointmentsLayout />,
         children: [
             { path: "", element: <Daily /> },
             { path: "calendario-mes", element: <Monthly /> },
@@ -43,7 +43,7 @@ export const routes = [
     },
     {
         path: "/estoque",
-        element: <Storage />,
+        element: <StorageLayout />,
         children: [
             { path: "", element: <StorageList /> },
             { path: "cadastrar", element: <StorageRegister /> },
@@ -51,7 +51,7 @@ export const routes = [
     },
     {
         path: "/colaboradores",
-        element: <Employees />,
+        element: <EmployeesLayout />,
         children: [
             { path: "", element: <EmployeesList /> },
             { path: "cadastrar", element: <EmployeesRegister /> },
@@ -59,11 +59,11 @@ export const routes = [
     },
     {
         path: "/financeiro",
-        element: <Finance />,
+        element: <FinanceLayout />,
         children: [
             {
                 path: "charges",
-                element: <Charges />,
+                element: <ChargesLayout />,
                 children: [
                     { path: "overview", element: <ChargesOverview /> },
                     { path: "register", element: <ChargesRegister /> },
@@ -71,7 +71,7 @@ export const routes = [
             },
             {
                 path: "debts",
-                element: <Debts />,
+                element: <DebtsLayout />,
                 children: [
                     { path: "overview", element: <DebtsOverview /> },
                     { path: "register", element: <DebtsRegister /> },
