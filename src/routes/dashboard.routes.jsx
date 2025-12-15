@@ -1,7 +1,6 @@
 import ResidentsLayout from "../layouts/dashboard/ResidentsLayout";
 import EmployeesLayout from "../layouts/dashboard/EmployeesLayout";
 import FinanceLayout from "../layouts/dashboard/FinanceLayout";
-import AppointmentsLayout from "../layouts/dashboard/AppointmentsLayout";
 import ChargesLayout from "../layouts/dashboard/ChargesLayout";
 import DebtsLayout from "../layouts/dashboard/DebtsLayout";
 
@@ -32,14 +31,8 @@ export const routes = [
             { path: "cadastrar", element: <ResidentsRegister /> },
         ],
     },
-    {
-        path: "/agendamentos",
-        element: <AppointmentsLayout />,
-        children: [
-            { path: "", element: <Daily /> },
-            { path: "calendario-mes", element: <Monthly /> },
-        ],
-    },
+    { path: "/agendamentos/hoje", element: <Daily /> },
+    { path: "/agendamentos/mes", element: <Monthly /> },
     {
         path: "/colaboradores",
         element: <EmployeesLayout />,
