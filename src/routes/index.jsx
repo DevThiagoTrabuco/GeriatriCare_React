@@ -2,12 +2,11 @@ import { createBrowserRouter } from "react-router";
 import LandingLayout from "../layouts/LandingLayout";
 import AuthLayout from "../layouts/AuthLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
-import AdminLayout from "../layouts/AdminLayout";
+import { SecurityRoute } from "../components/common/SecurityRoutes";
 
-import * as Landing from '../routes/landing.routes'
-import * as Auth from '../routes/auth.routes'
-import * as Dash from '../routes/dashboard.routes'
-import * as Admin from '../routes/admin.routes'
+import * as Landing from './landing.routes';
+import * as Auth from './auth.routes';
+import * as Dash from './dashboard.routes';
 
 export const router = createBrowserRouter([
     {
@@ -19,11 +18,16 @@ export const router = createBrowserRouter([
         children: Auth.routes,
     },
     {
-        element: <DashboardLayout />,
-        children: Dash.routes,
+        element: <SecurityRoute />,
+        children: [
+            {
+                element: <DashboardLayout />,
+                children: Dash.routes,
+            }
+        ]
     },
     {
-        element: <AdminLayout />,
-        children: Admin.routes,
-    },
+        path: "*",
+        element: <div>Página não encontrada</div>,
+    }
 ]);
