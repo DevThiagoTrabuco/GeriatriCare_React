@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { Email, Lock } from "@mui/icons-material";
 import { AuthService } from "../../services/AuthService";
+import logo from "../../assets/logo.png"
 
 export default function Login() {
     const navigate = useNavigate();
@@ -39,11 +40,10 @@ export default function Login() {
             <div className="min-h-screen min-w-screen flex items-center justify-center bg-gray-100">
                 <div className="bg-white rounded-lg shadow-md w-full max-w-4xl flex overflow-hidden">
                     <div className="hidden md:block w-1/2 border-r border-gray-600">
-                        {/*Pegar a Imagem do Figma*/}
                         <img
-                            src=""
+                            src={logo}
                             alt="Geriatricare"
-                            className="object-cover w-full h-[50vh]"
+                            className="object-fit w-full h-[50vh]"
                         />
                     </div>
                     <div className="w-full md:w-1/2 p-8 flex flex-col justify-center">

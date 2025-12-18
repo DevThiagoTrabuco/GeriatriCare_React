@@ -26,14 +26,12 @@ export default function Profile() {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    // Estados para dados
     const [paciente, setPaciente] = useState(null);
     const [familiares, setFamiliares] = useState([]);
     const [prescricoes, setPrescricoes] = useState([]);
     const [observacoes, setObservacoes] = useState([]);
     const [agendamentos, setAgendamentos] = useState([]);
 
-    // Estado de controle
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -46,7 +44,6 @@ export default function Profile() {
             const clienteId =
                 usuarioLogado?.cliente?.id || usuarioLogado?.clienteId || 1;
 
-            // Executa todas as chamadas em paralelo
             const [
                 pacienteRes,
                 familiaresRes,
@@ -58,7 +55,6 @@ export default function Profile() {
                 FamiliarService.buscarPorPaciente(clienteId, id),
                 PrescricaoService.listarPorPaciente(clienteId, id),
                 ObservacaoService.listarPorPaciente(clienteId, id),
-                // Nota: Verifique se o AgendamentoService.js tem este método exposto, baseado no Java 'buscarPorClienteEPaciente'
                 AgendamentoService.buscarPorCliente(clienteId),
             ]);
 
@@ -67,8 +63,6 @@ export default function Profile() {
             setPrescricoes(prescricoesRes.data);
             setObservacoes(observacoesRes.data);
 
-            // Filtragem manual caso o endpoint retorne todos do cliente (segurança extra)
-            // Se tiver o endpoint específico buscarPorClienteEPaciente no JS, melhor usar ele.
             const agendamentosDoPaciente = agendamentosRes.data.filter(
                 (a) => a.paciente && a.paciente.id === parseInt(id)
             );
@@ -267,8 +261,6 @@ export default function Profile() {
                                             {prescricao.descricao}
                                         </p>
 
-                                        {/* Nota: O modelo Java não tem 'observacoes' dentro de prescricao explicitamente como lista de string, 
-                                            geralmente é um campo texto ou não existe. Adapte conforme seu DTO. */}
                                         <div className="mt-3 flex items-center text-xs text-gray-500">
                                             <CalendarToday className="w-3 h-3 mr-1" />
                                             Início:{" "}
