@@ -5,21 +5,17 @@ export const AuthService = {
         const token = 'Basic ' + btoa(`${username}:${password}`);
 
         try {
-            const response = await api.get('/usuarios', {
+            
+            const response = await api.get('/usuarios/me', {
                 headers: { Authorization: token }
             });
 
             localStorage.setItem('auth_token', token);
-            const usuarioLogado = response.data.find(u => u.nomeUsuario === username);
+            
+            const usuarioDados = response.data;
+            localStorage.setItem('usuario_dados', JSON.stringify(usuarioDados));
 
-            if (usuarioLogado) {
-                localStorage.setItem('usuario_dados', JSON.stringify(usuarioLogado));
-                return usuarioLogado;
-            } else {
-                const usuarioBasico = { nomeUsuario: username };
-                localStorage.setItem('usuario_dados', JSON.stringify(usuarioBasico));
-                return usuarioBasico;
-            }
+            return usuarioDados;
 
         } catch (error) {
             console.error("Falha na autenticação:", error);
@@ -30,6 +26,7 @@ export const AuthService = {
     logout: () => {
         localStorage.removeItem('auth_token');
         localStorage.removeItem('usuario_dados');
+        window.location.href = '/login';
     },
 
     getUsuarioLogado: () => {
@@ -39,5 +36,11 @@ export const AuthService = {
 
     isAuthenticated: () => {
         return !!localStorage.getItem('auth_token');
+    },
+    
+    getClienteId: () => {
+        const usuarioJson = localStorage.getItem('usuario_dados');
+        if (!usuarioJson) return null;
+        const usuario = JSON.parse(usuarioJson);return usuario.cliente?.id || usuario.clienteId; 
     }
 };

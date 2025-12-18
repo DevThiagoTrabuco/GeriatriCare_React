@@ -22,9 +22,13 @@ api.interceptors.response.use(
     response => response,
     error => {
         if (error.response && error.response.status === 401) {
+            console.error("Não autorizado. Redirecionando para login.");
             localStorage.removeItem('auth_token');
             localStorage.removeItem('usuario_dados');
-            window.location.href = '/login';
+            
+            if (!window.location.pathname.includes('/login')) {
+                window.location.href = '/login';
+            }
         }
         return Promise.reject(error);
     }

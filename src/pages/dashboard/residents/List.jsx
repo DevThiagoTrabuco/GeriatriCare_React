@@ -24,7 +24,6 @@ export default function ResidentsList() {
             setPacientes(response.data);
         } catch (error) {
             console.error("Erro ao buscar residentes:", error);
-            alert("Erro ao carregar lista de residentes.");
         } finally {
             setLoading(false);
         }

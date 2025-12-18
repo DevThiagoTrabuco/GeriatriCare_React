@@ -1,7 +1,7 @@
 import { VerifiedUser, Favorite, Speed } from "@mui/icons-material";
+import dashboard from "../../assets/dashboard.jpg";
 
 export default function LandingPage() {
-
     return (
         <div className="min-h-screen bg-white font-sans text-gray-800">
             <div className="bg-blue-50 py-20">
@@ -25,11 +25,11 @@ export default function LandingPage() {
                         </div>
                     </div>
                     <div className="md:w-1/2 flex justify-center">
-                        <div className="w-full max-w-md h-64 bg-blue-200 rounded-xl shadow-inner flex items-center justify-center text-blue-500">
-                            <span className="text-lg font-semibold">
-                                Imagem Ilustrativa do Dashboard
-                            </span>
-                        </div>
+                        <img
+                            src={dashboard}
+                            alt="Dashboard do GeriatriCare"
+                            className="w-full max-w-md rounded-xl shadow-lg"
+                        />
                     </div>
                 </div>
             </div>
